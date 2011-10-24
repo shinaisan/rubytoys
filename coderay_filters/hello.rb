@@ -85,6 +85,12 @@ module CodeRay
       assert_equal([["hello", :reserved], ["Hello", :reserved], ["HELLO", :reserved]],
                    Scanners[:hello].new("helloHelloHELLO").tokenize)
     end
+    def test_wikipedia
+      assert_equal([["A \"", :plain], ["Hello", :reserved],
+                    [" world\" program is a computer program that prints out \"", :plain],
+                    ["Hello", :reserved], [" world\" on a display device.", :plain]],
+                   Scanners[:hello].new('A "Hello world" program is a computer program that prints out "Hello world" on a display device.').tokenize)
+    end
   end # class HelloTest
 
 end
